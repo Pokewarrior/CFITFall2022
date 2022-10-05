@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SCSU - Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/login.css"/>
+</head>
+<body>
+
+<div class="container-fluid text-center top-container">
+    <img src="static/images/newbuilding2.png">
+</div>
+<div class="container">
+
+    
+    
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to Southern Connecticut State University</h1>
+ 			<h2>Department of Communication Disorders</h2>
+       
+            <p>Admin? <a href="{{url_for('admin_dashboard') }}">Login</a></p>
+            <p>Instructor? <a href="{{url_for('instructor_dashboard') }}">Login</a></p>
+            <p>Student? <a href="{{url_for('student_dashboard') }}">Login</a></p>
+    
+
+            </div>
+    </div>
+</div>
+
+
+</body>
+</html>

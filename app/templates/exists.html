@@ -1,0 +1,27 @@
+<!-- Placeholder Display Page 
+This is currently used when a user ID already exists
+(In future updates, the database table id will autoincrement and student, admin, instructor ID will be assigned.
+This should allow multiples easier)-->
+
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="css/error.css" />
+  <style>
+    body {
+    background-color: #90d4ff;
+    padding-top: 20%;
+    text-align: center;
+    font-size: 64pt;
+    font-family: Georgia;
+  }
+  
+  .loginlink{
+    font-size: 20pt;
+  }
+  </style>
+  <body>
+  	 <!--<img src="/static/images/logo1.png"/> -->
+    <div id="error">USER ID ALREADY EXISTS!</div>
+    <a class="loginlink" href="{{ url_for('dashboard') }}">Return</a>
+  </body>
+</html>
