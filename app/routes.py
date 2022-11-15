@@ -1,3 +1,4 @@
+from warnings import catch_warnings
 from app import app
 from flask import render_template, redirect, url_for, flash, session, request
 from flask_login import login_user, logout_user, login_required, current_user
@@ -6,7 +7,7 @@ from datetime import datetime
 from app.models import user, section_a, section_b, section_c, section_d, section_e, assessments, admin, student, instructor, client
 import sys
 from sqlalchemy import delete
-
+import smtplib
 
 #################################################
 #
@@ -15,6 +16,7 @@ from sqlalchemy import delete
 #################################################
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
+
 def login():
     
     if request.method == 'POST':
@@ -68,7 +70,7 @@ def logout():
 def getsession():
     if 'Username' in session:
         Username = session['Username']
-        return f"Welcome {Username}"
+        return "Welcome {Username}"
 
 
 #################################################
@@ -341,6 +343,10 @@ def view_assessment():
     semester = current_student.semester
     print('semester:', file=sys.stderr)
     print(semester, file=sys.stderr)
+    
+    print('session_id:', file=sys.stderr)
+    
+    print('session_id:', assessment_id)
     session_id=assessment_id
     print('session_id:', file=sys.stderr)
     print(session_id, file=sys.stderr)
@@ -593,7 +599,8 @@ def new_assessment():
         print(session['client_name'], file=sys.stderr )
         client_disorder = current_client.disorder
         session['client_disorder'] = current_client.disorder
-        print(session['client_disorder'], file=sys.stderr )      
+        print(session['client_disorder'], file=sys.stderr )    
+        studentemail = current_student.email
     else:
         print("ERROR", file=sys.stderr)
 
@@ -648,6 +655,32 @@ def new_assessment():
     db.session.add(assessment_c)
     db.session.add(assessment_d)
     db.session.add(assessment_e)
+    #
+    try:
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
+        server.login('scsucfittemp@gmail.com','qyfjtpwmfbxtoeej')
+        message = """Subject: New Acessment made 
+
+        \n A new accessment was made by your instructor \n"""
+        server.sendmail('scsucfittemp@gmail.com',studentemail , message)
+        print('mail sent')
+        server.quit()
+        print('email session closed')
+    except smtplib.SMTPRecipientsRefused:
+        print("invalid recieving email")
+    except smtplib.SMTPHeloError: 
+        print("Email failed to send")
+    except smtplib.SMTPAuthenticationError:
+        print("login error for account")
+    except smtplib.SMTPDataError:
+        print("data send error")
+
+    except Exception as e: 
+        print("other error: " + str(e))
+
+    
+
 
     return render_template('assessment.html',  
                             a1_rating=0,
@@ -682,6 +715,7 @@ def new_assessment():
                             client_name=client_name, client_disorder=client_disorder) 
 
 
+
 #################################################
 #
 # save_assessment
@@ -705,7 +739,7 @@ def save_assessment():
         current_student = db.session.query(user).filter_by(id=student_id).first()
         student_name = current_student.username
         print(current_student.username, file=sys.stderr)
-        date = session['date']
+        date = None #session['date']
         print(date, file=sys.stderr)
         course = session['course'] 
         print(course, file=sys.stderr)
@@ -716,8 +750,8 @@ def save_assessment():
         disorder= session['client_disorder'] 
         print(disorder, file=sys.stderr)
         course_instructor = session['course_instructor'] 
+        assessment_id = None #session["assessment_id"] #temp change to none for testing. 
         print(course_instructor, file=sys.stderr)
-        assessment_id = session["assessment_id"]
         print('saving assessment_id', file=sys.stderr)
         print(assessment_id, file=sys.stderr)
 
@@ -1042,6 +1076,8 @@ def save_assessment():
        
         
     print('saving all sections and redirecting', file=sys.stderr)
+    
+
     return redirect(url_for('dashboard'))
 
 

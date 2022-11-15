@@ -528,6 +528,7 @@
 		
       <script>
       setInterval(calculateAverage_a, 100);
+	  setInterval(calc_modea, 100);
         function calculateAverage_a()
             {
               var a1=parseFloat(document.querySelector('input[name="a1_rating"]:checked').value);
@@ -537,11 +538,40 @@
               var a5=parseFloat(document.querySelector('input[name="a5_rating"]:checked').value);
               document.getElementById("average_a").innerHTML=(a1+a2+a3+a4+a5)/5;
             }
+			function calc_modea(){
+			  var a1=parseFloat(document.querySelector('input[name="a1_rating"]:checked').value);
+              var a2=parseFloat(document.querySelector('input[name="a2_rating"]:checked').value);
+              var a3=parseFloat(document.querySelector('input[name="a3_rating"]:checked').value);
+              var a4=parseFloat(document.querySelector('input[name="a4_rating"]:checked').value);
+              var a5=parseFloat(document.querySelector('input[name="a5_rating"]:checked').value);
+				  var array = [a1,a2,a3,a4,a5];
+				  
+				  var count = {};
+				var count = {};
+				array.forEach(elem => {
+					if (!count[elem])  count[elem] = 0
+						count[elem]+= 1;
+					});
+				console.log(count)
+				let result = []
+				let max = 0;
+				for(let key in count){
+				if(count[key] > max){result = [key]
+				max = count[key]}
+				else if (count[key] === max){
+				result.push(key)
+				}
+
+				} 
+				document.getElementById("mode_a").innerHTML=result;
+				}	
+			
             
       	</script>
 		
 			 <div class="item">	
 				 <center><label for="average_a" style="font-size: 18px;"> Average for Section A:	<b><label style="color: red" id="average_a"></b></label></label></center>
+				 <center><label for="mode_a" style="font-size: 18px;"> Mode for Section A:	<b><label style="color: red" id="mode_a"></b></label></label></center>
 		     </div>
 		  		
           
@@ -762,6 +792,7 @@
           </table>
           <script>
             setInterval(calculateAverage_b, 100);
+			setInterval(calc_modeb, 500);
             function calculateAverage_b()
                 {
                   var b1=parseFloat(document.querySelector('input[name="b1_rating"]:checked').value);
@@ -771,10 +802,45 @@
                   document.getElementById("average_b").innerHTML=(b1+b2+b3+b4)/4;
             
                 }
+				
+				function calc_modeb(){
+				var b1=parseFloat(document.querySelector('input[name="b1_rating"]:checked').value);
+                var b2=parseFloat(document.querySelector('input[name="b2_rating"]:checked').value);
+                var b3=parseFloat(document.querySelector('input[name="b3_rating"]:checked').value);
+                var b4=parseFloat(document.querySelector('input[name="b4_rating"]:checked').value);
+				  var array = [b1,b2,b3,b4];
+				  
+				  var count = {};
+				var count = {};
+				array.forEach(elem => {
+					if (!count[elem])  count[elem] = 0
+						count[elem]+= 1;
+					});
+				console.log(count)
+				let result = []
+				let max = 0;
+				for(let key in count){
+				if(count[key] > max){result = [key]
+				max = count[key]}
+				else if (count[key] === max){
+				result.push(key)
+				}
+
+				} 
+				document.getElementById("mode_b").innerHTML=result;
+				}	
+			
+				
+			
+			
+			
+			
+			
           </script>
       
       	  <div class="item">
 		  	<center><label for="average_b" style="font-size: 18px;"> Average for Section B: <b><label style="color: red" id="average_b"></b></label></label></center>
+			<center><label for="mode_b" style="font-size: 18px;"> Average for Section B: <b><label style="color: red" id="mode_b"></b></label></label></center>
 		  </div>		
          
 		  
@@ -1388,6 +1454,7 @@
 
           <script>
             setInterval(calculateAverage_c, 100);
+			setInterval(calc_modec, 1200);
             function calculateAverage_c()
                 {
                   var c1=parseFloat(document.querySelector('input[name="c1_rating"]:checked').value);
@@ -1405,10 +1472,52 @@
                   var c13=parseFloat(document.querySelector('input[name="c13_rating"]:checked').value);
                   document.getElementById("average_c").innerHTML=(c1+c2+c3+c4+c5+c6+c7+c8+c9+c10+c11+c12+c13)/13;
                 }
+			function calc_modec(){
+				  var c1=parseFloat(document.querySelector('input[name="c1_rating"]:checked').value);
+                  var c2=parseFloat(document.querySelector('input[name="c2_rating"]:checked').value);
+                  var c3=parseFloat(document.querySelector('input[name="c3_rating"]:checked').value);
+                  var c4=parseFloat(document.querySelector('input[name="c4_rating"]:checked').value);
+                  var c5=parseFloat(document.querySelector('input[name="c5_rating"]:checked').value);
+                  var c6=parseFloat(document.querySelector('input[name="c6_rating"]:checked').value);
+                  var c7=parseFloat(document.querySelector('input[name="c7_rating"]:checked').value);
+                  var c8=parseFloat(document.querySelector('input[name="c8_rating"]:checked').value);
+                  var c9=parseFloat(document.querySelector('input[name="c9_rating"]:checked').value);
+                  var c10=parseFloat(document.querySelector('input[name="c10_rating"]:checked').value);
+                  var c11=parseFloat(document.querySelector('input[name="c11_rating"]:checked').value);
+                  var c12=parseFloat(document.querySelector('input[name="c12_rating"]:checked').value);
+                  var c13=parseFloat(document.querySelector('input[name="c13_rating"]:checked').value);
+				  var array = [c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13];
+				  
+				  var count = {};
+			var count = {};
+				array.forEach(elem => {
+					if (!count[elem])  count[elem] = 0
+						count[elem]+= 1;
+					});
+				console.log(count)
+			let result = []
+				let max = 0;
+		for(let key in count){
+			if(count[key] > max){result = [key]
+				max = count[key]}
+			else if (count[key] === max){
+				result.push(key)
+			}
+
+		} 
+	/*if (Object.keys(count).length === result.length){
+		document.getElementById("mode_c").innerHTML="no mode";
+		return;
+		
+	}*/
+	document.getElementById("mode_c").innerHTML=result;
+		}	
+			
           </script>
 
       	  <div class="item">
 		  	<center><label for="average_c" style="font-size: 18px;"> Average for Section C: <b><label style="color: red" id="average_c"></b></label></label></center>
+			<center><label for="mode_c" style="font-size: 18px;"> Mode for Section C: <b><label style="color: red" id="mode_c"></b></label></label></center>
 		  </div>		
 
 
@@ -1581,6 +1690,7 @@
           </table>
           <script>
      		setInterval(calculateAverage_d, 100);
+			setInterval(calcMode_d, 100);
             function calculateAverage_d()
                 {
                   var d1=parseFloat(document.querySelector('input[name="d1_rating"]:checked').value);
@@ -1589,10 +1699,27 @@
                   document.getElementById("average_d").innerHTML=(d1+d2+d3)/3;
             
                 }
+			function calcMode_d()
+				{
+			      var d1=parseFloat(document.querySelector('input[name="d1_rating"]:checked').value);
+                  var d2=parseFloat(document.querySelector('input[name="d2_rating"]:checked').value);
+                  var d3=parseFloat(document.querySelector('input[name="d3_rating"]:checked').value);
+				if (d1 == d2 || d1 ==d3 || d2 == d3){
+				if (d1 == d2 || d1 == d3)
+				{
+				document.getElementById("mode_d").innerHTML=d1;
+				} else {
+				document.getElementById("mode_d").innerHTML=d2;
+				}
+				}else{
+				document.getElementById("mode_d").innerHTML="no mode";
+				}
+				}
           </script>
 
       	  <div class="item">
 		  	<center><label for="average_d" style="font-size: 18px;"> Average for Section D: <b><label style="color: red" id="average_d"></label></b></label></center>
+			<center><label for="mode_d style="font-size: 18px;"> Mode for Section D: <b><label style="color: red" id="mode_d"></label></b></label></center>
 		  </div>		
       
       <!----------------------BUTTON LINE----------------------->
@@ -1720,6 +1847,7 @@
 
         <script>
      	setInterval(calculateAverage_e, 100);
+		setInterval(calcMode_e, 100);
           function calculateAverage_e()
               {
                 var e1=parseFloat(document.querySelector('input[name="e1_rating"]:checked').value);
@@ -1728,10 +1856,22 @@
                 document.getElementById("average_e").innerHTML=(e1+e2)/2;
               
               }
+		  function calcMode_e()
+		  {
+			var e1=parseFloat(document.querySelector('input[name="e1_rating"]:checked').value);
+            var e2=parseFloat(document.querySelector('input[name="e2_rating"]:checked').value);
+			if (e1 == e2){
+			document.getElementById("mode_e").innerHTML=e1;
+			} else{
+			document.getElementById("mode_e").innerHTML="no mode";
+			}
+			
+		  }
         </script>
 
       	  <div class="item">
 		  	<center><label for="average_e" style="font-size: 18px;"> Average for Section E: <b><label style="color: red" id="average_e"></b></label></label></center>
+			<center><label for="mode_e" style="font-size: 18px;"> Mode for Section E: <b><label style="color: red" id="mode_e"></b></label></label></center>
 		  </div>		
 
     <!----------------------BUTTON LINE----------------------->

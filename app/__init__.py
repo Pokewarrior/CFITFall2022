@@ -13,7 +13,7 @@ load_dotenv('.flaskenv')
 # Get the environment variables from .flaskenv
 # Google Cloud SQL (change this accordingly)
 # Get the environment variables from .flaskenv
-USERNAME="tempopenconnection"
+USERNAME="access"
 PASSWORD=""
 PROJECT_ID ="Cfit"
 INSTANCE_NAME ="cfitdata"

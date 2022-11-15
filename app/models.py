@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
+
 class section_a(db.Model):
     __tablename__ = 'section_a'   
     id = db.Column(db.Integer, primary_key = True)
@@ -195,7 +196,7 @@ class assessments(db.Model):
     disorder = db.Column(db.String(256))
     instructor_id = db.Column(db.Integer)
     client_id = db.Column(db.Integer)
-    date = db.Column(db.String(256))
+    date = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.current_timestamp())
 
 class admin(db.Model):
     __tablename__ = 'admin'   
